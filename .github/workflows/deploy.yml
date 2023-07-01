@@ -12,7 +12,7 @@ jobs:
       name: Setup Gcloud Account
       runs-on: ubuntu-latest
       env:
-          IMAGE_NAME: ${{ vars.GCP_ARTIFACT_URL }}/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_APP_NAME_BACKEND }}/${{ env.GCP_ARTIFACT_URL }}
+          IMAGE_NAME: ${{ vars.GCP_ARTIFACT_URL }}/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_APP_NAME_BACKEND }}/${{ vars.GCP_ARTIFACT_URL }}
       
       steps:
 
@@ -40,4 +40,4 @@ jobs:
           run: docker push $IMAGE_NAME
 
         - name: Deploy Docker image
-          run: gcloud run deploy ${{ secrets.GCP_APP_NAME_BACKEND }} --image $IMAGE_NAME --region southamerica-east1 --platform manage
+          run: gcloud run deploy ${{ secrets.GCP_APP_NAME_BACKEND }} --image $IMAGE_NAME --region southamerica-east1 --platform managed
